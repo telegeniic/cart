@@ -9,7 +9,7 @@ import { iResponse } from '../modules/response.interface';
 })
 export class LoginService {
 
-  url: string = "http://27dd-187-190-178-65.ngrok.io/"; //url base
+  url: string = "https://27dd-187-190-178-65.ngrok.io/"; //url base
 
   constructor(private http:HttpClient) { }
 
