@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { iLogin } from '../modules/login.interface';
 import { iResponse } from '../modules/response.interface';
 
@@ -9,12 +9,18 @@ import { iResponse } from '../modules/response.interface';
 })
 export class LoginService {
 
-  url: string = "https://27dd-187-190-178-65.ngrok.io/"; //url base
+  url: string = "http://odoo.app.ngrok.io/"; //url base
+
+  private credentials: BehaviorSubject<iResponse> = new BehaviorSubject<iResponse>({result: "false"});
 
   constructor(private http:HttpClient) { }
 
-  login(form:iLogin):Observable<iResponse>{
+  login(form:iLogin){
     let direccion:string = this.url+"app/login";
-    return this.http.post<iResponse>(direccion, form);
+    this.http.post<iResponse>(direccion, form).subscribe(this.credentials);
+  }
+
+  get credentialsInfo(){
+    return this.credentials.asObservable();
   }
 }

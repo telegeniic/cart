@@ -15,7 +15,8 @@ export class LoginPage implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     })
-    
+
+    this.loginService.credentialsInfo.subscribe(data => console.log(data));
     
   }
 
@@ -28,7 +29,7 @@ export class LoginPage implements OnInit {
     }
     console.log(username);
     console.log(password);
-    this.loginService.login(form).subscribe(data => console.log(data));
+    this.loginService.login(form);
     
   }
 
