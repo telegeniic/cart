@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { iLogin } from '../modules/login.interface';
-import { iResponse } from '../modules/response.interface';
+import { iLogin } from '../models/login.interface';
+import { iResponse } from '../models/response.interface';
+import { iUser } from '../models/user.interface';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +14,20 @@ export class LoginService {
   url: string = "http://odoo.app.ngrok.io/"; //url base
 
   private credentials: BehaviorSubject<iResponse> = new BehaviorSubject<iResponse>({result: "false"});
+  private user: iUser = {
+    username: "",
+    token: "",
+    logedin: false
+  }
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private storage: StorageService) { }
 
   login(form:iLogin){
     let direccion:string = this.url+"app/login";
-    this.http.post<iResponse>(direccion, form).subscribe(this.credentials);
-  }
-
-  get credentialsInfo(){
-    return this.credentials.asObservable();
+    this.http.post<iResponse>(direccion, form).subscribe(data => {
+      this.user.username = form.user;
+      this.user.logedin = JSON.parse(data.result)
+      this.storage.userObservableData = this.user;
+    });
   }
 }
