@@ -26,10 +26,8 @@ export class LoginPage implements OnInit {
     this.storage.userObservable.subscribe(data => {
       if(data.username != "Guest" || data.token != ""){
         this.loadingController.dismiss();
-        this.router.navigateByUrl("/folder/inbox");
+        this.router.navigateByUrl("/homepage");
       }
-      console.log(data);
-      
     });
     
   }

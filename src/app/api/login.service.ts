@@ -12,8 +12,6 @@ import { StorageService } from './storage.service';
 export class LoginService {
 
   url: string = "http://odoo.app.ngrok.io/"; //url base
-
-  private credentials: BehaviorSubject<iResponse> = new BehaviorSubject<iResponse>({result: "false"});
   private user: iUser = {
     username: "",
     token: "",
@@ -28,6 +26,11 @@ export class LoginService {
       this.user.username = form.user;
       this.user.logedin = JSON.parse(data.result)
       this.storage.userObservableData = this.user;
+      this.storage.loggedIn = this.user.logedin;
     });
+  }
+
+  logout(){
+    this.storage.loggedIn = false;
   }
 }

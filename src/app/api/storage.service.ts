@@ -13,6 +13,8 @@ export class StorageService {
     logedin: false
   })
 
+  loggedIn: boolean = false;
+
   constructor() { }
 
   get userObservable(): Observable<iUser>{
