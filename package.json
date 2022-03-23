@@ -9,7 +9,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "ionic:start": "ionic serve",
+    "ionic:build-prod": "ionic build --prod",
+    "firebase:deploy": "firebase deploy"
   },
   "private": true,
   "dependencies": {

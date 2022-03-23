@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { StorageService } from '../api/storage.service';
-import { iQuotation } from '../models/quotation.interface';
+import { Quotation } from '../models/quotation.interface';
 
 @Component({
   selector: 'app-homepage',
@@ -11,34 +11,35 @@ import { iQuotation } from '../models/quotation.interface';
 })
 export class HomepagePage implements OnInit {
 
-  quotations:iQuotation[] = [
-    {
-      number: "S00001",
-      creationDate: new Date(),
-      customer: "Administrator",
-      salesperson: "Administrator",
-      nextActivity: "pend",
-      total: 175.16,
-      status: "Quotation"
-    },
-    {
-      number: "S00001",
-      creationDate: new Date(),
-      customer: "Administrator",
-      salesperson: "Administrator",
-      nextActivity: "pend",
-      total: 175.16,
-      status: "Quotation"
-    }
-  ];
+  quotations: Quotation[];
 
   constructor(private storage: StorageService,
     private router: Router,
     private alertController: AlertController) {
-    if(!this.storage.loggedIn) this.presentAlert()
+    if(!this.storage.loggedIn) {this.presentAlert().then(r => this.router.navigateByUrl('login'));}
   }
 
   ngOnInit() {
+    this.quotations = [
+      {
+        numberId: 'S00001',
+        creationDate: new Date(),
+        customer: 'Administrator',
+        salesperson: 'Administrator',
+        nextActivity: 'pend',
+        total: 175.16,
+        status: 'Quotation'
+      },
+      {
+        numberId: 'S00001',
+        creationDate: new Date(),
+        customer: 'Administrator',
+        salesperson: 'Administrator',
+        nextActivity: 'pend',
+        total: 175.16,
+        status: 'Quotation'
+      }
+    ];
   }
 
   async presentAlert() {
@@ -51,10 +52,6 @@ export class HomepagePage implements OnInit {
     });
 
     await alert.present();
-    this.router.navigateByUrl("login")
-
-    const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
 }
