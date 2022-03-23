@@ -1,5 +1,5 @@
-export interface iUser {
-    username: string,
-    token: string,
-    logedin: boolean
+export interface User {
+    username: string;
+    token: string;
+    logged: boolean;
 }

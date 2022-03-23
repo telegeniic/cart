@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { LoginService } from '../api/login.service';
 import { StorageService } from '../api/storage.service';
-import { iLogin } from '../models/login.interface';
+import { Login } from '../models/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -13,35 +13,31 @@ import { iLogin } from '../models/login.interface';
 })
 export class LoginPage implements OnInit {
   public loginForm;
-  constructor(formBuilder: FormBuilder,
-    private loginService:LoginService,
+  constructor(private formBuilder: FormBuilder,
+    private loginService: LoginService,
     private storage: StorageService,
     private loadingController: LoadingController,
     private router: Router) {
-    this.loginForm = formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    })
-
     this.storage.userObservable.subscribe(data => {
-      if(data.username != "Guest" || data.token != ""){
-        this.loadingController.dismiss();
-        this.router.navigateByUrl("/homepage");
+      if(data.logged){
+        this.loadingController.dismiss().then();
+        this.router.navigateByUrl('/homepage').then();
+      }
+      if(!data.logged && data.logged != null){
+        this.loadingController.dismiss().then();
       }
     });
-    
   }
 
   async login(){
-    this.presentLoading();
+    this.presentLoading().then();
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
-    let form:iLogin = {
+    const form: Login = {
       user: username,
-      password: password
-    }
+      password
+    };
     this.loginService.login(form);
-    
   }
 
   async presentLoading() {
@@ -55,6 +51,10 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
 }

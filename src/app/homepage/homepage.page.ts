@@ -16,7 +16,7 @@ export class HomepagePage implements OnInit {
   constructor(private storage: StorageService,
     private router: Router,
     private alertController: AlertController) {
-    if(!this.storage.loggedIn) {this.presentAlert().then(r => this.router.navigateByUrl('login'));}
+    if(!this.storage.loggedIn) {this.presentAlert().then(() => this.router.navigateByUrl('login'));}
   }
 
   ngOnInit() {

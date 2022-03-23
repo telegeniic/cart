@@ -1,28 +1,41 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { iUser } from '../models/user.interface';
+import { User } from '../models/user.interface';
+import {LoginError} from '../models/loginError.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  private user: BehaviorSubject<iUser> = new BehaviorSubject<iUser>({
-    username: "Guest",
-    token: "",
-    logedin: false
-  })
+  loggedIn = false;
 
-  loggedIn: boolean = false;
+  private user: BehaviorSubject<User>;
+  private error: BehaviorSubject<LoginError>;
+  constructor() {
+    this.user = new BehaviorSubject<User>({
+      username: 'Guest',
+      token: '',
+      logged: null
+    });
+    this.error = new BehaviorSubject<LoginError>({
+      status: 200,
+      message: ''
+    });
+  }
 
-  constructor() { }
-
-  get userObservable(): Observable<iUser>{
+  get userObservable(): Observable<User>{
     return this.user.asObservable();
   }
 
-  set userObservableData(data: iUser){
-    this.user.next(data);
+  get loginErrorObservable(): Observable<LoginError>{
+    return this.error.asObservable();
+  }
 
+  set userObservableData(data: User){
+    this.user.next(data);
+  }
+  set loginErrorObservableData(error: LoginError){
+    this.error.next(error);
   }
 }

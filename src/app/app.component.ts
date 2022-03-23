@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { LoginService } from './api/login.service';
+import { Observable } from 'rxjs';
 import { StorageService } from './api/storage.service';
-import { iUser } from './models/user.interface';
+import { User } from './models/user.interface';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -19,7 +18,7 @@ export class AppComponent {
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-  user$: Observable<iUser>;
+  user$: Observable<User>;
 
   constructor(private storage: StorageService) {
     this.user$ = this.storage.userObservable;
