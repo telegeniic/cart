@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { StorageService } from '../api/storage.service';
 import { Quotation } from '../models/quotation.interface';
+import {LoginService} from '../api/login.service';
 
 @Component({
   selector: 'app-homepage',
@@ -13,9 +14,11 @@ export class HomepagePage implements OnInit {
 
   quotations: Quotation[];
 
-  constructor(private storage: StorageService,
+  constructor(
+    private storage: StorageService,
     private router: Router,
-    private alertController: AlertController) {
+    private alertController: AlertController,
+    private login: LoginService) {
     if(!this.storage.loggedIn) {this.presentAlert().then(() => this.router.navigateByUrl('login'));}
   }
 
@@ -52,6 +55,11 @@ export class HomepagePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  logout(){
+    this.login.logout();
+    this.router.navigateByUrl('/');
   }
 
 }
