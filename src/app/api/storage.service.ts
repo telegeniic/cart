@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.interface';
 import {LoginError} from '../models/loginError.interface';
 import {LocalStorageService} from './local-storage.service';
+import {Quotation} from '../models/Quotation';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class StorageService {
 
   private user: BehaviorSubject<User>;
   private error: BehaviorSubject<LoginError>;
+  private userQuotations: BehaviorSubject<Quotation[]>;
+
   constructor(private ls: LocalStorageService) {
     const user = ls.getInfo('user');
     this.user = new BehaviorSubject<User>({
@@ -28,6 +31,7 @@ export class StorageService {
       status: 200,
       message: ''
     });
+    this.userQuotations = new BehaviorSubject<Quotation[]>(null);
   }
 
   get userObservable(): Observable<User>{
@@ -38,11 +42,19 @@ export class StorageService {
     return this.error.asObservable();
   }
 
+  get userQuotationsObservable(): Observable<Quotation[]>{
+    return this.userQuotations.asObservable();
+  }
+
   set userObservableData(data: User){
     this.ls.saveInfo('user', data);
     this.user.next(data);
   }
   set loginErrorObservableData(error: LoginError){
     this.error.next(error);
+  }
+
+  set userQuotationsObservableData(quotations: Quotation[]){
+    this.userQuotations.next(quotations);
   }
 }

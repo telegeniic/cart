@@ -12,11 +12,13 @@ import {LocalStorageService} from './local-storage.service';
 })
 export class LoginService {
 
-  url = 'https://odoo.app.ngrok.io/'; //url base
+  private url = 'https://odoo.app.ngrok.io/'; //url base
   private user: User;
   private error: LoginError;
 
-  constructor(private http: HttpClient, private storage: StorageService, private ls: LocalStorageService) {
+  constructor(private http: HttpClient,
+              private storage: StorageService,
+              private ls: LocalStorageService) {
     this.user = {
       username: '',
       token: '',
