@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from './api/storage.service';
-import { User } from './models/user.interface';
+import { User } from './models/User.interface';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',

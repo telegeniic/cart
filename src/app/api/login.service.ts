@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Login } from '../models/login.interface';
-import { Response } from '../models/response.interface';
-import { User } from '../models/user.interface';
+import { Login } from '../models/Login.interface';
+import { Response } from '../models/Response.interface';
+import { User } from '../models/User.interface';
 import { StorageService } from './storage.service';
-import { LoginError } from '../models/loginError.interface';
+import { Error } from '../models/Error.interface';
 import {LocalStorageService} from './local-storage.service';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class LoginService {
 
   private url = 'https://odoo.app.ngrok.io/'; //url base
   private user: User;
-  private error: LoginError;
+  private error: Error;
 
   constructor(private http: HttpClient,
               private storage: StorageService,
@@ -42,7 +42,7 @@ export class LoginService {
       error => {
       this.error.status = error.status;
       this.error.message = error.error.error;
-      this.storage.loginErrorObservableData = this.error;
+      this.storage.errorObservableData = this.error;
       });
   }
 

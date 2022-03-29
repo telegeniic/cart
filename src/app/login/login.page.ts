@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import {AlertController, LoadingController} from '@ionic/angular';
 import { LoginService } from '../api/login.service';
 import { StorageService } from '../api/storage.service';
-import { Login } from '../models/login.interface';
-import {LoginError} from '../models/loginError.interface';
+import { Login } from '../models/Login.interface';
+import {Error} from '../models/Error.interface';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
       }
       if(data.logged){this.router.navigateByUrl('/homepage').then();}
     });
-    this.storage.loginErrorObservable.subscribe(data => {
+    this.storage.errorObservable.subscribe(data => {
       if(this.loader){
         this.loader = false;
         this.loadingController.dismiss().then();
@@ -63,7 +63,7 @@ export class LoginPage implements OnInit {
     console.log('Loading dismissed!');
   }
 
-  async presentAlert(data: LoginError) {
+  async presentAlert(data: Error) {
     const alert = await this.alertController.create({
       //cssClass: 'my-custom-class',
       header: data.message,

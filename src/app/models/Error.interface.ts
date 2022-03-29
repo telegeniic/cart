@@ -1,4 +1,4 @@
-export interface LoginError {
+export interface Error {
   status: number;
   message: string;
 }

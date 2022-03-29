@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../models/user.interface';
-import {LoginError} from '../models/loginError.interface';
-import {LocalStorageService} from './local-storage.service';
-import {Quotation} from '../models/Quotation';
+import { User } from '../models/User.interface';
+import { Error } from '../models/Error.interface';
+import { LocalStorageService } from './local-storage.service';
+import { Quotation } from '../models/Quotation';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class StorageService {
   loggedIn = false;
 
   private user: BehaviorSubject<User>;
-  private error: BehaviorSubject<LoginError>;
+  private error: BehaviorSubject<Error>;
   private userQuotations: BehaviorSubject<Quotation[]>;
 
   constructor(private ls: LocalStorageService) {
@@ -27,7 +27,7 @@ export class StorageService {
       this.userObservableData = user;
       this.loggedIn = true;
     }
-    this.error = new BehaviorSubject<LoginError>({
+    this.error = new BehaviorSubject<Error>({
       status: 200,
       message: ''
     });
@@ -38,7 +38,7 @@ export class StorageService {
     return this.user.asObservable();
   }
 
-  get loginErrorObservable(): Observable<LoginError>{
+  get errorObservable(): Observable<Error>{
     return this.error.asObservable();
   }
 
@@ -50,7 +50,7 @@ export class StorageService {
     this.ls.saveInfo('user', data);
     this.user.next(data);
   }
-  set loginErrorObservableData(error: LoginError){
+  set errorObservableData(error: Error){
     this.error.next(error);
   }
 

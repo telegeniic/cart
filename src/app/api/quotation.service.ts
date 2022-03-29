@@ -26,7 +26,7 @@ export class QuotationService {
     this.http.get<Quotation[]>(direction, httpOptions).subscribe(data => {
       this.storage.userQuotationsObservableData = data;
     }, error => {
-      this.storage.loginErrorObservableData = {
+      this.storage.errorObservableData = {
         status: error.status,
         message: error.error.message
       };
