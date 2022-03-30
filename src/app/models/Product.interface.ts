@@ -6,3 +6,7 @@ export interface Product{
   qtyAvailable: number;
   standardPrice: number;
 }
+
+export interface Products {
+  products: Product[];
+}
