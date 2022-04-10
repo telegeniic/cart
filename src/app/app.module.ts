@@ -9,8 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 import {HttpConfigInterceptor} from './interceptors/http-config-interceptor.service';
+import { environment } from '../environments/environment'
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,5 +25,9 @@ import {HttpConfigInterceptor} from './interceptors/http-config-interceptor.serv
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true}],
   bootstrap: [AppComponent],
+
+
 })
 export class AppModule {}
+
+
