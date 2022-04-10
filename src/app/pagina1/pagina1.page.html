@@ -1,23 +1,36 @@
 <ion-header>
-  <ion-toolbar color= "primary">
-    <ion-buttons slot="start">
-      <ion-menu-button menu= "menuPrincipal"></ion-menu-button>
-    </ion-buttons>
+  <ion-toolboard>
     <ion-title>
       <div>
       <p>
-        inicio
+        MMostrar
       </p>
      </div>
      </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item routerLink= "" routerDirection="root" routerLinkActive="active-item">
-    <ion-button> Edit</ion-button>
-  </ion-item>
-    <ion-item routerLink= "" routerDirection="root" routerLinkActive="active-item">
-   <ion-button> Delate</ion-button>
-    </ion-item>
+<ion-content  >
+  <ion-text>
+    tablas
+  </ion-text>
+  <ion-datatable>
+    <tr>
+      <ion-row>
+      <ion-col>Number</ion-col>
+      <ion-col>Creation Date</ion-col>
+      <ion-col>Customer</ion-col>
+      <ion-col>Salesperson</ion-col>
+      <ion-col>Next Activity</ion-col>
+      <ion-col>Total</ion-col>
+      <ion-col>Status</ion-col>
+    </ion-row>
+    </tr>
+    <tr>
+      
+
+
+    </tr>
+  </ion-datatable>
+
 </ion-content>

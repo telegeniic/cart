@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment'
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,5 +23,9 @@ import { environment } from '../environments/environment'
 })],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
+
+
 })
 export class AppModule {}
+
+

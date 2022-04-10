@@ -14,7 +14,9 @@ export class AppComponent {
     { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
     { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
     { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+    { title: 'spam', url: '/folder/spam', icon: 'warning' },
+    { title: 'Show', url: '/pagina2', icon: 'browsers' },
+    { title: 'Edit', url: '/pagina3', icon: 'brush' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
