@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
         this.loader = false;
         this.loadingController.dismiss().then();
       }
-      if(data.logged){this.router.navigateByUrl('/homepage').then();}
+      if(data.logged){this.router.navigateByUrl('/dashboard').then();}
     });
     this.storage.errorObservable.subscribe(e => {
       if(this.loader){

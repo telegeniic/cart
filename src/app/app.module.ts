@@ -11,7 +11,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {HttpConfigInterceptor} from './interceptors/http-config-interceptor.service';
 import { environment } from '../environments/environment'
-import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [AppComponent],

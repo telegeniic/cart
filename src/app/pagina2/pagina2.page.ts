@@ -8,21 +8,19 @@ import { Quotation } from '../models/quotation.interface';
   styleUrls: ['./pagina2.page.scss'],
 })
 export class Pagina2Page implements OnInit {
- cotisaciones: Quotation;
+ cotisaciones: Quotation[];
   constructor(
     private storage: StorageService,
     private quotationService: QuotationService,) { 
-      this.storage.userQuotationsObservable.subscribe
-        n=>{
-        this.cotisaciones = n; 
-         
-        }
+      this.storage.userQuotationsObservable.subscribe(n => {
+          this.cotisaciones = n; 
+        })
       
     
     }
 
   ngOnInit() {
-   
+    this.quotationService.getQuotations();
   }
   
 }

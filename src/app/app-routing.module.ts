@@ -30,7 +30,23 @@ const routes: Routes = [
   {
     path: 'pagina3',
     loadChildren: () => import('./pagina3/pagina3.module').then( m => m.Pagina3PageModule)
+  },  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'view-quotation',
+    loadChildren: () => import('./quotations/view-quotation/view-quotation.module').then( m => m.ViewQuotationPageModule)
+  },
+  {
+    path: 'create-quotation',
+    loadChildren: () => import('./quotations/create-quotation/create-quotation.module').then( m => m.CreateQuotationPageModule)
+  },
+  {
+    path: 'edit-quotation',
+    loadChildren: () => import('./quotations/edit-quotation/edit-quotation.module').then( m => m.EditQuotationPageModule)
   }
+
 ];
 
 @NgModule({
