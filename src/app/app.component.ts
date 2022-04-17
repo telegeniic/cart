@@ -12,15 +12,15 @@ export class AppComponent {
     { title: 'Dashboard', url: '/', icon: 'mail' },
     { title: 'Quotation', url: '/', icon: 'paper-plane' },
     { title: 'Setings', url: '/', icon: 'heart' },
-    { title: 'Logout', url: '/', icon: 'archive' },
+    { title: 'Logout', url: './login/login.module', icon: 'archive' },
     
 
   ];
  
-
   user$: Observable<User>;
 
   constructor(private storage: StorageService) {
     this.user$ = this.storage.userObservable;
   }
+
 }
