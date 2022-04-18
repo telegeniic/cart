@@ -20,16 +20,20 @@ const routes: Routes = [
     loadChildren: () => import('./homepage/homepage.module').then( m => m.HomepagePageModule)
   },
   {
-    path: 'pagina1',
-    loadChildren: () => import('./pagina1/pagina1.module').then( m => m.Pagina1PageModule)
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
   {
-    path: 'pagina2',
-    loadChildren: () => import('./pagina2/pagina2.module').then( m => m.Pagina2PageModule)
+    path: 'view-quotation',
+    loadChildren: () => import('./quotations/view-quotation/view-quotation.module').then( m => m.ViewQuotationPageModule)
   },
   {
-    path: 'pagina3',
-    loadChildren: () => import('./pagina3/pagina3.module').then( m => m.Pagina3PageModule)
+    path: 'create-quotation',
+    loadChildren: () => import('./quotations/create-quotation/create-quotation.module').then( m => m.CreateQuotationPageModule)
+  },
+  {
+    path: 'edit-quotation',
+    loadChildren: () => import('./quotations/edit-quotation/edit-quotation.module').then( m => m.EditQuotationPageModule)
   }
 ];
 

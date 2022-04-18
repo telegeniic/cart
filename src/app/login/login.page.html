@@ -1,34 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button disabled="true"></ion-menu-button>
-    </ion-buttons>
-    <ion-title  >login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large" color="white">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <ion-item class="img-container" lines="none">
+    <img src="https://cdn.discordapp.com/attachments/703658666372366497/963217948783312896/IMG-20220411-WA0019.jpg" >
+  </ion-item>
   <div id="container">
     <form [formGroup]="loginForm" (submit)="login()">
-      <ion-item lines="full">
-        <ion-label position="floating">Username</ion-label>
-        <ion-input formControlName="username" type="text" required></ion-input>
+      <ion-item lines="none">
+        <ion-input placeholder="Username" formControlName="username" type="text" required="true"></ion-input>
       </ion-item>
-      <ion-item lines="full">
-        <ion-label position="floating">Password</ion-label>
-        <ion-input formControlName="password" type="password" required></ion-input>
+      <ion-item lines="none">
+        <ion-input placeholder="Password" formControlName="password" type="password" required="true"></ion-input>
       </ion-item>
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
-        </ion-col>
-      </ion-row>
+      <ion-button expand="full" class="login-btn" type="submit" >Login</ion-button>
+      <a>Reset password?</a>
     </form>
   </div>
 </ion-content>

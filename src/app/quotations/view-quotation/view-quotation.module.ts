@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { Pagina2PageRoutingModule } from './pagina2-routing.module';
+import { ViewQuotationPageRoutingModule } from './view-quotation-routing.module';
 
-import { Pagina2Page } from './pagina2.page';
+import { ViewQuotationPage } from './view-quotation.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    Pagina2PageRoutingModule
+    ViewQuotationPageRoutingModule
   ],
-  declarations: [Pagina2Page]
+  declarations: [ViewQuotationPage]
 })
-export class Pagina2PageModule {}
+export class ViewQuotationPageModule {}

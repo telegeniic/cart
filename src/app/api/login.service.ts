@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Login } from '../models/Login.interface';
 import { Response } from '../models/Response.interface';
 import { User } from '../models/User.interface';
 import { StorageService } from './storage.service';
-import { Error } from '../models/Error.interface';
 import {LocalStorageService} from './local-storage.service';
+import {ErrorsService} from './errors.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +14,15 @@ export class LoginService {
 
   private url = 'https://odoo.app.ngrok.io/'; //url base
   private user: User;
-  private error: Error;
 
   constructor(private http: HttpClient,
               private storage: StorageService,
-              private ls: LocalStorageService) {
+              private ls: LocalStorageService,
+              private handler: ErrorsService) {
     this.user = {
       username: '',
       token: '',
       logged: false
-    };
-    this.error = {
-      status: 200,
-      message: ''
     };
   }
 
@@ -38,12 +34,8 @@ export class LoginService {
       this.user.token = data.token;
       this.storage.userObservableData = this.user;
       this.storage.loggedIn = this.user.logged;
-    },
-      error => {
-      this.error.status = error.status;
-      this.error.message = error.error.error;
-      this.storage.errorObservableData = this.error;
-      });
+      this.handler.noError();
+    });
   }
 
   logout(){
@@ -56,4 +48,6 @@ export class LoginService {
     this.storage.loggedIn = false;
     this.storage.userObservableData = this.user;
   }
+
+
 }

@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Quotations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let q of quotations">
+      <ion-item (click)="showModal(q)" style="cursor: pointer;">
+        <ion-avatar slot="start">
+          <img src="{{ imageSources[q.state].src }}" alt="{{ imageSources[q.state].alt }}">
+        </ion-avatar>
+        <ion-label>
+          <h2>Order# {{q.id}}</h2>
+          <h3>Order date: {{q.createDate}}</h3>
+        </ion-label>
+        <ion-avatar slot="end">
+          <img src="assets/svg/chevron-forward.svg" alt="forward"/>
+        </ion-avatar>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="testing()">Delete</ion-item-option>
+      </ion-item-options>
+      <ion-item-options side="start">
+        <ion-item-option color="success" (click)="testing()">WhatsApp</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/User.interface';
-import { Error } from '../models/Error.interface';
+import { CustomError } from '../models/Error.interface';
 import { LocalStorageService } from './local-storage.service';
-import { Quotation } from '../models/Quotation';
+import {Quotation} from '../models/Quotation.interface';
+import {Product} from '../models/Product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,32 +14,35 @@ export class StorageService {
   loggedIn = false;
 
   private user: BehaviorSubject<User>;
-  private error: BehaviorSubject<Error>;
+  private error: BehaviorSubject<CustomError>;
   private userQuotations: BehaviorSubject<Quotation[]>;
+  private productsList: BehaviorSubject<Product[]>;
 
   constructor(private ls: LocalStorageService) {
-    const user = ls.getInfo('user');
+    const user: User = ls.getInfo('user');
     this.user = new BehaviorSubject<User>({
       username: 'Guest',
       token: '',
-      logged: null
+      logged: false
     });
     if(user != null){
       this.userObservableData = user;
-      this.loggedIn = true;
+      this.loggedIn = user.logged;
     }
-    this.error = new BehaviorSubject<Error>({
+    this.error = new BehaviorSubject<CustomError>({
       status: 200,
-      message: ''
+      message: '',
+      origin: ''
     });
-    this.userQuotations = new BehaviorSubject<Quotation[]>(null);
+    this.userQuotations = new BehaviorSubject<Quotation[]>([]);
+    this.productsList = new BehaviorSubject<Product[]>([]);
   }
 
   get userObservable(): Observable<User>{
     return this.user.asObservable();
   }
 
-  get errorObservable(): Observable<Error>{
+  get errorObservable(): Observable<CustomError>{
     return this.error.asObservable();
   }
 
@@ -46,15 +50,24 @@ export class StorageService {
     return this.userQuotations.asObservable();
   }
 
+  get productsListObservable(): Observable<Product[]>{
+    return this.productsList.asObservable();
+  }
+
   set userObservableData(data: User){
     this.ls.saveInfo('user', data);
     this.user.next(data);
   }
-  set errorObservableData(error: Error){
+  set errorObservableData(error: CustomError){
+    console.log(error);
     this.error.next(error);
   }
 
   set userQuotationsObservableData(quotations: Quotation[]){
     this.userQuotations.next(quotations);
+  }
+
+  set productsListObservableData(productsList: Product[]){
+    this.productsList.next(productsList);
   }
 }

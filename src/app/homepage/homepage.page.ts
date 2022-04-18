@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import {AlertController, LoadingController} from '@ionic/angular';
 import { StorageService } from '../api/storage.service';
-import { Quotation } from '../models/quotation.interface';
 import {LoginService} from '../api/login.service';
 import {QuotationService} from '../api/quotation.service';
+import {Quotation} from '../models/Quotation.interface';
 
 @Component({
   selector: 'app-homepage',
@@ -14,45 +14,34 @@ import {QuotationService} from '../api/quotation.service';
 export class HomepagePage implements OnInit {
 
   quotations: Quotation[];
+  private loader = false;
 
   constructor(
     private storage: StorageService,
     private router: Router,
     private alertController: AlertController,
     private login: LoginService,
-    private quotationService: QuotationService) {
-    if(!this.storage.loggedIn) {this.presentAlert().then(() => this.router.navigateByUrl('login'));}
+    private quotationService: QuotationService,
+    private loadingController: LoadingController) {
+    this.storage.userQuotationsObservable.subscribe(data  => {
+      this.quotations = data;
+    });
+    this.storage.errorObservable.subscribe(e => {
+      if(e.status !== 200){
+        this.presentAlert(e.message).then(() => this.router.navigateByUrl('login'));
+      }
+    });
   }
 
   ngOnInit() {
-    this.quotations = [
-      {
-        numberId: 'S00001',
-        creationDate: new Date(),
-        customer: 'Administrator',
-        salesperson: 'Administrator',
-        nextActivity: 'pend',
-        total: 175.16,
-        status: 'Quotation'
-      },
-      {
-        numberId: 'S00001',
-        creationDate: new Date(),
-        customer: 'Administrator',
-        salesperson: 'Administrator',
-        nextActivity: 'pend',
-        total: 175.16,
-        status: 'Quotation'
-      }
-    ];
+    this.quotationService.getQuotations();
   }
 
-  async presentAlert() {
+  async presentAlert(message: string) {
     const alert = await this.alertController.create({
       //cssClass: 'my-custom-class',
       header: 'Unauthorized',
-      subHeader: 'Not logged in',
-      message: 'You must log in before enter this page.',
+      message,
       buttons: ['OK']
     });
 
@@ -61,11 +50,18 @@ export class HomepagePage implements OnInit {
 
   logout(){
     this.login.logout();
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/').then();
   }
 
-  getQuotations(){
-    this.quotationService.getQuotations();
+  async presentLoading() {
+    this.loader = true;
+    const loading = await this.loadingController.create({
+      //cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      //duration: 2000
+    });
+    await loading.present();
+    console.log('Loading dismissed!');
   }
 
 }
