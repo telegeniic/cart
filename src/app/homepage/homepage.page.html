@@ -1,12 +1,15 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
     <ion-title>homepage</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid class="ion-margin">
-    <ion-button (click)="logout()">Log Out</ion-button>
+    <ion-button >Log Out</ion-button>
     <ion-row>
       <ion-col>Id</ion-col>
       <ion-col>Create Date</ion-col>
@@ -15,15 +18,6 @@
       <ion-col>Amount Tax</ion-col>
       <ion-col>Total</ion-col>
       <ion-col>State</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let q of quotations">
-      <ion-col>{{ q.id }}</ion-col>
-      <ion-col>{{ q.createDate }}</ion-col>
-      <ion-col>{{ q.name }}</ion-col>
-      <ion-col>{{ q.amountUntaxed }}</ion-col>
-      <ion-col>{{ q.amountTax }}</ion-col>
-      <ion-col>{{ q.amountTotal }}</ion-col>
-      <ion-col>{{ q.state }}</ion-col>
     </ion-row>
   </ion-grid>
 

@@ -24,13 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./pagina1/pagina1.module').then( m => m.Pagina1PageModule)
   },
   {
-    path: 'pagina2',
-    loadChildren: () => import('./pagina2/pagina2.module').then( m => m.Pagina2PageModule)
-  },
-  {
-    path: 'pagina3',
-    loadChildren: () => import('./pagina3/pagina3.module').then( m => m.Pagina3PageModule)
-  },  {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
@@ -46,7 +39,6 @@ const routes: Routes = [
     path: 'edit-quotation',
     loadChildren: () => import('./quotations/edit-quotation/edit-quotation.module').then( m => m.EditQuotationPageModule)
   }
-
 ];
 
 @NgModule({

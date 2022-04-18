@@ -9,20 +9,18 @@ import { User } from './models/User.interface';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'spam', url: '/folder/spam', icon: 'warning' },
-    { title: 'Show', url: '/pagina2', icon: 'browsers' },
-    { title: 'Edit', url: '/pagina3', icon: 'brush' },
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+    { title: 'Dashboard', url: '/', icon: 'mail' },
+    { title: 'Quotation', url: '/', icon: 'paper-plane' },
+    { title: 'Setings', url: '/', icon: 'heart' },
+    { title: 'Logout', url: './login/login.module', icon: 'archive' },
+    
 
+  ];
+ 
   user$: Observable<User>;
 
   constructor(private storage: StorageService) {
     this.user$ = this.storage.userObservable;
   }
+
 }
