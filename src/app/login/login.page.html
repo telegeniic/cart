@@ -5,12 +5,10 @@
   <div id="container">
     <form [formGroup]="loginForm" (submit)="login()">
       <ion-item lines="none">
-        <ion-label position="floating">Username</ion-label>
-        <ion-input formControlName="username" type="text" required="true"></ion-input>
+        <ion-input placeholder="Username" formControlName="username" type="text" required="true"></ion-input>
       </ion-item>
       <ion-item lines="none">
-        <ion-label position="floating">Password</ion-label>
-        <ion-input formControlName="password" type="password" required="true"></ion-input>
+        <ion-input placeholder="Password" formControlName="password" type="password" required="true"></ion-input>
       </ion-item>
       <ion-button expand="full" class="login-btn" type="submit" >Login</ion-button>
       <a>Reset password?</a>
