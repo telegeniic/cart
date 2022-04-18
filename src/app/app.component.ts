@@ -13,10 +13,8 @@ export class AppComponent {
     { title: 'Quotation', url: '/', icon: 'paper-plane' },
     { title: 'Setings', url: '/', icon: 'heart' },
     { title: 'Logout', url: './login/login.module', icon: 'archive' },
-    
-
   ];
- 
+
   user$: Observable<User>;
 
   constructor(private storage: StorageService) {

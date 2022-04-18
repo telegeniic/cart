@@ -19,21 +19,21 @@ export class DashboardPage implements OnInit {
     private quotationService: QuotationService,
     private modalCtrl: ModalController
     ) {
-    this.imageSources['aproved'] = {
+    this.imageSources.aproved = {
       src: 'assets/svg/checkmark-done.svg',
       alt: 'checkmark-done'
-    }
-    this.imageSources['draft'] = {
+    };
+    this.imageSources.draft = {
       src: 'assets/svg/checkmark.svg',
       alt: 'checkmark'
-    }
-    this.imageSources['cancel'] = {
+    };
+    this.imageSources.cancel = {
       src: 'assets/svg/close.svg',
       alt: 'cancel'
-    }
+    };
     this.storage.userQuotationsObservable.subscribe(quotation => {
       this.quotations = quotation;
-    })
+    });
   }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class DashboardPage implements OnInit {
   }
 
   testing(){
-    console.log("se deslizo el elemento")
+    console.log('se deslizo el elemento');
   }
 
   async showModal(q: Quotation){
