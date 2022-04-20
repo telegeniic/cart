@@ -3,10 +3,23 @@
 
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color= "primary">
+         
+          <ion-list-header>
+            <ion-icon name="person-circle" size="large"></ion-icon>
+            <div>
+              <p>
+            {{ (user$ | async)?.username }}
+             </p>
+          </div>
+          </ion-list-header>
+          <ion-note>hi@ionicframework.com</ion-note>
+      </ion-toolbar>
+      </ion-header>
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>{{ (user$ | async)?.username }}</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">

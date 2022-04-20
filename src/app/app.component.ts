@@ -9,10 +9,10 @@ import { User } from './models/User.interface';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Dashboard', url: '/', icon: 'mail' },
-    { title: 'Quotation', url: '/', icon: 'paper-plane' },
-    { title: 'Setings', url: '/', icon: 'heart' },
-    { title: 'Logout', url: './login/login.module', icon: 'archive' },
+    { title: 'Dashboard', url: '/', icon: 'build' },
+    { title: 'Quotation', url: '/', icon: 'folder'},
+    { title: 'Setinsg', url: '/', icon: 'newspaper'},
+    { title: 'Logout', url: './login/login.module', icon: 'log-out' },
     
 
   ];
