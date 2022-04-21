@@ -14,16 +14,17 @@ export class LoginService {
 
   private url = 'https://odoo.app.ngrok.io/'; //url base
   private user: User;
+  private guestUser: User = {
+    username: 'Guest',
+    token: '',
+    logged: false
+  };
 
   constructor(private http: HttpClient,
               private storage: StorageService,
               private ls: LocalStorageService,
               private handler: ErrorsService) {
-    this.user = {
-      username: '',
-      token: '',
-      logged: false
-    };
+    this.user = this.guestUser;
   }
 
   login(form: Login){
@@ -39,12 +40,7 @@ export class LoginService {
   }
 
   logout(){
-    this.user = {
-      username: '',
-      token: '',
-      logged: false
-    };
-    this.ls.deleteInfo('user');
+    this.user = this.guestUser;
     this.storage.loggedIn = false;
     this.storage.userObservableData = this.user;
   }
