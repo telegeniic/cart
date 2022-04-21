@@ -5,7 +5,6 @@ import {AlertController, LoadingController} from '@ionic/angular';
 import { LoginService } from '../api/login.service';
 import { StorageService } from '../api/storage.service';
 import { Login } from '../models/Login.interface';
-import {Error} from '../models/Error.interface';
 
 @Component({
   selector: 'app-login',
@@ -26,17 +25,18 @@ export class LoginPage implements OnInit {
     private alertController: AlertController
   ) {
     this.storage.userObservable.subscribe(data => {
+      console.log(data);
       if(this.loader){
         this.loader = false;
         this.loadingController.dismiss().then();
       }
-      if(data.logged){this.router.navigateByUrl('/homepage').then();}
+      if(data.logged){this.router.navigateByUrl('/dashboard').then();}
     });
-    this.storage.errorObservable.subscribe(data => {
+    this.storage.errorObservable.subscribe(e => {
       if(this.loader){
         this.loader = false;
         this.loadingController.dismiss().then();
-        this.presentAlert(data).then();
+        this.presentAlert(e.message).then();
       }
     });
   }
@@ -63,12 +63,11 @@ export class LoginPage implements OnInit {
     console.log('Loading dismissed!');
   }
 
-  async presentAlert(data: Error) {
+  async presentAlert(message: string) {
     const alert = await this.alertController.create({
       //cssClass: 'my-custom-class',
-      header: data.message,
-      subHeader: 'Credenciales incorrectas',
-      message: 'Favor de intentar de nuevo.',
+      header: 'Error',
+      message,
       buttons: ['OK']
     });
 
@@ -81,5 +80,4 @@ export class LoginPage implements OnInit {
       password: ['', Validators.required]
     });
   }
-
 }

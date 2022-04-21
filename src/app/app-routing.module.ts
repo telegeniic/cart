@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {SessionsGuard} from './sessions.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
-    redirectTo: 'menu',
     pathMatch: 'full'
   },
   {
@@ -25,12 +21,22 @@ const routes: Routes = [
     loadChildren: () => import('./homepage/homepage.module').then( m => m.HomepagePageModule)
   },
   {
-    path: 'pagina1',
-    loadChildren: () => import('./pagina1/pagina1.module').then( m => m.Pagina1PageModule)
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    canActivate: [SessionsGuard]
   },
-  
- 
- 
+  {
+    path: 'view-quotation',
+    loadChildren: () => import('./quotations/view-quotation/view-quotation.module').then( m => m.ViewQuotationPageModule)
+  },
+  {
+    path: 'create-quotation',
+    loadChildren: () => import('./quotations/create-quotation/create-quotation.module').then( m => m.CreateQuotationPageModule)
+  },
+  {
+    path: 'edit-quotation',
+    loadChildren: () => import('./quotations/edit-quotation/edit-quotation.module').then( m => m.EditQuotationPageModule)
+  }
 ];
 
 @NgModule({
