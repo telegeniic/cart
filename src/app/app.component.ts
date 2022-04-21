@@ -4,7 +4,7 @@ import { StorageService } from './api/storage.service';
 import { User } from './models/User.interface';
 import {LoginService} from './api/login.service';
 import {AlertController} from '@ionic/angular';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -12,9 +12,9 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Dashboard', url: '/', icon: 'mail' },
-    { title: 'Quotation', url: '/', icon: 'paper-plane' },
-    { title: 'Settings', url: '/', icon: 'heart' }
+    { title: 'Dashboard', url: '/dashboard', icon: 'build' },
+    { title: 'Quotation', url: '/', icon: 'folder' },
+    { title: 'Settings', url: '/', icon: 'newspaper' }
   ];
 
   user$: Observable<User>;
@@ -25,7 +25,8 @@ export class AppComponent {
   }
 
   logout(){
-    this.router.navigateByUrl('/login').then(r => this.login.logout());
+    this.login.logout();
+    this.router.navigateByUrl('/login').then();
   }
 
   async presentAlertConfirm() {

@@ -5,8 +5,11 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>{{ (user$ | async)?.username }}</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+
+          <ion-list-header class="header">
+            <ion-icon class="icon-header" name="person-circle-outline" size="large" ></ion-icon>
+            {{ (user$ | async)?.username }}
+          </ion-list-header>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">

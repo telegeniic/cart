@@ -1,3 +1,15 @@
+ion-list-header ion-icon.icon-header{
+  margin-right: 2vw;
+}
+
+ion-list-header.header{
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+  background-color: #044959;
+  color: #f4f5f8;
+  text-transform: capitalize;
+}
+
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
