@@ -13,6 +13,7 @@ export class ViewQuotationPage implements OnInit {
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {
+    console.log(this.quotation);
   }
 
   async close(){

@@ -10,6 +10,71 @@
 </ion-header>
 
 <ion-content>
-  <h2>si jalo</h2>
-  <h2>{{ quotation.id }}</h2>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        Name: {{ quotation.name }}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Status: {{ quotation.state }}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Create date: {{ quotation.createDate }}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Date order: {{ quotation.dateOrder }}
+      </ion-label>
+    </ion-item>
+    <ion-list inset="true">
+      <ion-list-header>
+        <h2>Products</h2>
+      </ion-list-header>
+      <ion-accordion-group *ngFor="let order of quotation.orderLine">
+        <ion-accordion [value]="order.id">
+          <ion-item slot="header">
+            <ion-label>{{ order.name }}</ion-label>
+          </ion-item>
+
+          <ion-list slot="content">
+            <ion-item>
+              <ion-label>ID: {{ order.id }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Price unit: ${{ order.priceUnit }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Quantity: {{ order.productUomQty }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Discount: ${{ order.discount }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Price Subtotal: ${{ order.priceSubTotal }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-list>
+    <ion-item>
+      <ion-label>
+        Untaxed: ${{ quotation.amountUntaxed }}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Taxes: ${{ quotation.amountTax }}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Total: ${{ quotation.amountTotal }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

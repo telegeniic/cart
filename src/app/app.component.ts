@@ -13,8 +13,8 @@ import {Router} from '@angular/router';
 export class AppComponent {
   public appPages = [
     { title: 'Dashboard', url: '/dashboard', icon: 'build' },
-    { title: 'Quotation', url: '/', icon: 'folder' },
-    { title: 'Settings', url: '/', icon: 'newspaper' }
+    { title: 'Quotation', url: '/folder', icon: 'folder' },
+    { title: 'Settings', url: '/folder', icon: 'newspaper' }
   ];
 
   user$: Observable<User>;
@@ -25,8 +25,9 @@ export class AppComponent {
   }
 
   logout(){
-    this.login.logout();
-    this.router.navigateByUrl('/login').then();
+    this.login.logout().then(() =>{
+      this.router.navigateByUrl('/login').then();
+    });
   }
 
   async presentAlertConfirm() {

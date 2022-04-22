@@ -11,7 +11,7 @@ export interface Quotation{
   state: string;
 }
 
-interface OrderLine{
+export interface OrderLine{
   discount: number;
   id: number;
   name: string;
