@@ -55,7 +55,6 @@ export class StorageService {
   }
 
   set userObservableData(data: User){
-    this.ls.saveInfo('user', data);
     this.user.next(data);
   }
   set errorObservableData(error: CustomError){

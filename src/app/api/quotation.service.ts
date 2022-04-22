@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {StorageService} from './storage.service';
 import {HttpClient} from '@angular/common/http';
-import {Quotation} from '../models/Quotation.interface';
+import {OrderLine, Quotation} from '../models/Quotation.interface';
 import {ErrorsService} from './errors.service';
 
 @Injectable({
@@ -36,12 +36,27 @@ export class QuotationService {
         dateOrder: d.date_order,
         id: d.id,
         name: d.name,
-        orderLine: [],
+        orderLine: this.orderLineParser(d.order_line),
         partnerAppName: d.partner_app_name,
         state: d.state,
         amountTax: d.amount_tax
       };
       return message;
+    });
+  }
+
+  orderLineParser(order: any): OrderLine[]{
+    console.log(order);
+    return order.map(o => {
+      const trans: OrderLine = {
+        discount: o.discount,
+        id: o.id,
+        name: o.name,
+        priceSubTotal: o.price_subtotal,
+        priceUnit: o.price_unit,
+        productUomQty: o.product_uom_qty
+      };
+      return trans;
     });
   }
 }
