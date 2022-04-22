@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-searchbar
+  [(ngModel)]="miBuscador"
+  [showCancelButton]="miStringDeCancell"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)"
+  inputmode="numeric">
+</ion-searchbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item *ngFor="filtro:'abc'"></ion-item>
+</ion-list>
+</ion-content>

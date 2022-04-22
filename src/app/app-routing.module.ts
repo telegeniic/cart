@@ -36,7 +36,11 @@ const routes: Routes = [
   {
     path: 'edit-quotation',
     loadChildren: () => import('./quotations/edit-quotation/edit-quotation.module').then( m => m.EditQuotationPageModule)
+  },  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   }
+
 ];
 
 @NgModule({
