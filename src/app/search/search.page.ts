@@ -10,6 +10,7 @@ import { StorageService } from '../api/storage.service';
 })
 export class SearchPage implements OnInit {
   listas: any [] = [];
+  textoBuscar= '';
   constructor(private storage: StorageService, private products: ProductsService) { 
     storage.productsListObservable.subscribe(data =>{
      this.listas = data
@@ -22,7 +23,7 @@ export class SearchPage implements OnInit {
   }
 
   buscar(event){
-    console.log(event);
+    this.textoBuscar= event.detals.value;
   }
 
 
