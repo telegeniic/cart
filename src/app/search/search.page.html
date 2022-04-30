@@ -1,32 +1,13 @@
 <ion-header>
-  <ion-searchbar
-  [(ngModel)]="miBuscador"
-  [showCancelButton]="miStringDeCancell"
-  (ionInput)="onInput($event)"
-  (ionCancel)="onCancel($event)"
-  inputmode="numeric">
+  <ion-searchbar animated
+   (ionChange)="buscar($event)">
 </ion-searchbar>
 </ion-header>
 
 <ion-content>
 <ion-list>
   
-  <ion-item >
-    <ion-label>
-      <ion-checkbox cheket slot="end">
-
-      </ion-checkbox>
-    </ion-label>
-    <ion-label>
-      <ion-checkbox cheket slot="end">
-
-      </ion-checkbox>
-    </ion-label>
-    <ion-label>
-      <ion-checkbox cheket slot="end">
-
-      </ion-checkbox>
-    </ion-label>
-  </ion-item>
+  <ion-item ></ion-item>
+  
 </ion-list>
 </ion-content>
