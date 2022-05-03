@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'listas',
     loadChildren: () => import('./listas/listas.module').then( m => m.ListasPageModule)
+  },
+  {
+    path: 'formulario',
+    loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
   }
 
 ];

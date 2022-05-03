@@ -15,7 +15,8 @@ export class AppComponent {
 
     { title: 'Dashboard', url: '/dashboard', icon: 'build' },
     { title: 'Quotation', url: '/', icon: 'folder' },
-    { title: 'Settings', url: '/', icon: 'newspaper' }
+    { title: 'Settings', url: '/', icon: 'newspaper' },
+    { title: 'Search', url: '/search', icon: 'search' }
   ];
 
   user$: Observable<User>;
